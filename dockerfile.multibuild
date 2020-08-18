@@ -1,0 +1,9 @@
+FROM gcc AS mybuildstage
+
+COPY hello.c /app/hello.c
+RUN ls /app
+RUN gcc -o /app/hello /app/hello.c
+
+FROM ubuntu
+COPY --from=mybuildstage /app/hello .
+CMD ["./hello"]
