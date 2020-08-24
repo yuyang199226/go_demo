@@ -32,4 +32,11 @@ gauge类型指标最常见的就是用来标识服务是否存活的up指标了�
 rate(grpc_request_total{type="sv"}[5m])
 表示过去五分钟每秒收到的请求数
 请求花费时间
-request_cost_second_bucket{le="1.0"}
+
+histogram_quantile(0.99, sum by (le) (rate(request_cost_second_bucket[10m])))
+
+histogram_quantile(0.9, sum by (le) (rate(request_cost_second_bucket[10m])))
+
+
+histogram_quantile(0.5, sum by (le) (rate(request_cost_second_bucket[10m])))
+
