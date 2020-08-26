@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-producer-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-producer
+  template:
+    metadata:
+      labels:
+        app: kafka-producer
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: aibee-qa-224
+      containers:
+      - name: kafka
+        imagePullPolicy: IfNotPresent
+        image: online-pipeline/kafka-py:latest
+        workingDir: /opt/kafka_client
+        command: ["python", "kafka_consumer.py"]
+        resources:
+          requests:
+            cpu: 0.05
