@@ -17,3 +17,6 @@ services:
       - --server-id=1
       - --log-bin=/var/log/mysql/mysql-bin
       - --binlog_do_db=store_business_engine
+      - --slow-query-log=on
+      - --slow-query-log-file=/var/log/mysql/mysql_slow.log
+      -  --long-query-time=1
