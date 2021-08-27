@@ -37,12 +37,13 @@ func main() {
 			// 写数据是需要加锁的，并发写的情况下，可能会出现copy多份数据的情况
 			// 但此处只有一个协程做此操作
 			// 1、复制出新的Map
-			newVals := copyBak()
+			//newVals := copyBak()
 			// 2、修改已有的元素，或添加新元素
 			str = "12343264364634" + strconv.Itoa(i)
-			newVals[3] = &str
+			//newVals[3] = &str
 			// 3、将原有的Map地址指向新的Map
-			testMap = newVals
+			//testMap = newVals
+            testMap[3] = &str
 		}
 	}()
 
